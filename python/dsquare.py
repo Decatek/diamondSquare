@@ -8,18 +8,18 @@ import math
 def diamondSquare(squares, middlePoints, edgeMiddles, squareIndex, iteration, iterations):
     
     if(iteration<=iterations):
-        
         edgeMiddles = []
         middlePoints = []
         
         #Step #1: Get the middle point of the square given at first
- 
+        randomValue = (random.random() -0.5)*2
+            
         squareMiddlePoint = ((squares[squareIndex][0] + squares[squareIndex+1][0])/2, #X POSITION
                              (squares[squareIndex][1]+squares[squareIndex+3][1])/2, #Y POSITION
                              ((squares[squareIndex][2]+
                                squares[squareIndex+1][2]+
                                squares[squareIndex+2][2]+
-                               squares[squareIndex+3][2])/4) + (random.random()-0.5) * 4 #AVERAGE OF HEIGHTS
+                               squares[squareIndex+3][2])/4) + randomValue #AVERAGE OF HEIGHTS
                              )
         
         middlePoints.append(squareMiddlePoint)
