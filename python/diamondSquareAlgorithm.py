@@ -1,20 +1,12 @@
 import random
 from turtle import *
 
-#Israel Nebot, 2016
-#israel.nebot@gmail.com
-#Feel free to contribute / add / tweak!
 
-#Turtle declaration
-turtle = Turtle()
-screen = Screen()
-screen.colormode(255)
-screenx = 300
-screeny = 300
-screen.setup(400,400)
-screen.screensize(screenx, screeny)
-turtle.speed(10)
-turtle.hideturtle()
+#Israel Nebot, 2016
+#http://israelnebot.github.io
+#Feel free to collaborate / tweak / mod as you want
+
+
 
 
 def diamondSquare(squares, middlePoints, edgeMiddles, squareIndex, iteration, iterations):
@@ -24,7 +16,7 @@ def diamondSquare(squares, middlePoints, edgeMiddles, squareIndex, iteration, it
         edgeMiddles = []
         middlePoints = []
         
-    #Step #1: Get the middle point of the square given at first. Using any two vertices works.
+        #Step #1: Get the middle point of the square given at first
  
         squareMiddlePoint = ((squares[squareIndex][0] + squares[squareIndex+1][0])/2, #X POSITION
                              (squares[squareIndex][1]+squares[squareIndex+3][1])/2, #Y POSITION
@@ -36,63 +28,74 @@ def diamondSquare(squares, middlePoints, edgeMiddles, squareIndex, iteration, it
         
         middlePoints.append(squareMiddlePoint)
         
-    #Step #2: Get the middle point of the edges.
+        #Step #2: Get the middle point of the edges
 
-                        #1-0
+                        #1----0
         edgeMiddles = [((squares[squareIndex+1][0]+squares[squareIndex][0])/2,
                         squares[squareIndex+1][1],
                         (squares[squareIndex+1][2]+squares[squareIndex][2])/2)
-                       ,#0-2
+                       ,#0----2
                        (squares[squareIndex][0],
                         (squares[squareIndex][1]+squares[squareIndex+2][1])/2,
                         (squares[squareIndex][2]+squares[squareIndex+2][2])/2)
-                       ,#3-2
+                       ,#3----2
                        ((squares[squareIndex+3][0]+squares[squareIndex+2][0])/2,
                         squares[squareIndex+3][1],
                         (squares[squareIndex+3][2]+squares[squareIndex+2][2])/2)
-                       ,#1-3
+                       ,#1----3
                        ((squares[squareIndex+1][0],
                          (squares[squareIndex+1][1]+squares[squareIndex+3][1])/2,
                          (squares[squareIndex+1][2]+squares[squareIndex+3][2])/2))
                        ]
+
         
-        #Step #3: Append the newly created inner squares to the squares array
+        #Step #3: Create new squares & append them to the squares array
         
-        #new Square 1
+        #The problem comes here: we are reusing the vertices of the first
+        #square. This way we'll have too many repeated vertices in the end.
+        #This part needs inspection.
+        
+        #TOP LEFT subSQUARE
         squares.append(squares[squareIndex])
         squares.append(edgeMiddles[0])
         squares.append(edgeMiddles[1])
         squares.append(middlePoints[0])
         
-        
-        #new Square 2
+        #TOP RIGHT subSQUARE
         squares.append(edgeMiddles[0])
         squares.append(squares[squareIndex+1])
         squares.append(middlePoints[0])
         squares.append(edgeMiddles[3])
   
-        #new Square 3
+        #BOTTOM LEFT subSQUARE
         squares.append(edgeMiddles[1])
         squares.append(middlePoints[0])
         squares.append(squares[squareIndex+2])
         squares.append(edgeMiddles[2])
-        #new Square 4
+        
+        #BOTTOM RIGHT subSQUARE
         squares.append(middlePoints[0])
         squares.append(edgeMiddles[3])
         squares.append(edgeMiddles[2])
         squares.append(squares[squareIndex+3])
 
-
-        #Step #4, Recursively call the function on each new square.
+        #Step 4: Recursively call the function on each subSQUARE as if
+        #it was the first square.
         
         return diamondSquare(squares, middlePoints, edgeMiddles, squareIndex+4, iteration+1, iterations)
     
-    
         
-        
+turtle = Turtle()
+screen = Screen()
+screen.colormode(255)
+screenx = 300
+screeny = 300
+screen.setup(400,400)
+screen.screensize(screenx, screeny)
+turtle.speed(10)
 
 
-#FIRST SQUARE:
+##DEFINED SQUARE:
                             
 ##  (0)   (1)
 ##   o-----o
@@ -108,22 +111,20 @@ squares = [(0.0,1.0,random.random()*2),
            (1.0,0.0,random.random()*2)]
 
 
-                            
-diamondSquare(squares, [], [], 0, 1, 85) #85 -> Full map coverage (more: More dots, more definition)
-                                         #                        (less: Less dots, less definition)
+#Entry point
+diamondSquare(squares, [], [], 0, 1, 85)
 
 
 #TURTLE PAINT
 i=0
+turtle.hideturtle()
 while(i<len(squares)):
     
     turtle.penup()
     turtle.goto(squares[i][0]*125,squares[i][1]*125)
     height = squares[i][2]
-    if(abs(0+round(height*50)-80) <=255): #So we don't get colours with >255 (ERROR!)
-        turtle.dot(10, 0, abs(0+round(height*50)-20),0) # Size, R, G, B
-    else:
-        turtle.dot(10, 0, abs(0+round(height*50)-40),0)
+    turtle.pensize(0.5)
+    turtle.dot(round(height)*3, 0, 0, 0)
     i+=1
 
     
