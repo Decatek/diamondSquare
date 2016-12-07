@@ -1,4 +1,5 @@
 import random
+import math
 
 #Israel Nebot, 2016
 #http://israelnebot.github.io
@@ -18,7 +19,7 @@ def diamondSquare(squares, middlePoints, edgeMiddles, squareIndex, iteration, it
                              ((squares[squareIndex][2]+
                                squares[squareIndex+1][2]+
                                squares[squareIndex+2][2]+
-                               squares[squareIndex+3][2])/4) +random.random()*2 #AVERAGE OF HEIGHTS
+                               squares[squareIndex+3][2])/4) + (random.random()-0.5) * 4 #AVERAGE OF HEIGHTS
                              )
         
         middlePoints.append(squareMiddlePoint)
