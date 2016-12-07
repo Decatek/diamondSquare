@@ -38,8 +38,9 @@ while(i<len(squares)):
     turtle.penup()
     turtle.goto(squares[i][0]*85,squares[i][1]*85)
     height = squares[i][2]
-    print(height)
-    if(height <= 1):
+
+    #Water & coast
+    if(height <= 1): 
         colorR = 0
         
         colorG = round(66 - 2*height)
@@ -49,10 +50,25 @@ while(i<len(squares)):
         colorB = round(255 - (255*height))
         if(colorB>=255): colorB = 255
         if(colorB<=0): colorB = 0
+
+    #Land
+    elif(height > 1 and height <= 2): 
         
-    else:
+        colorR = round(10 + height) 
+        if(colorR>=255): colorR = 255
+        if(colorR<=0): colorR = 0
         
-        colorR = round(60 + 3*height)
+        colorG = round(60 + 25*height) 
+        if(colorG>=255): colorG = 255
+        if(colorG<=0): colorG = 0
+        
+        colorB = round(10 + height) 
+        if(colorB>=255): colorB = 255
+        if(colorB<=0): colorB = 0
+
+    #Mountains
+    else:                               
+        colorR = round(60 + 3*height) 
         if(colorR>=255): colorR = 255
         if(colorR<=0): colorR = 0
         
@@ -63,7 +79,7 @@ while(i<len(squares)):
         colorB = round(40 + height)
         if(colorB>=255): colorB = 255
         if(colorB<=0): colorB = 0
-    
+        
 
     turtle.dot(7, colorR, colorG, colorB)
     i+=1
