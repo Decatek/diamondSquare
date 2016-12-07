@@ -1,0 +1,10 @@
+# kha specific
+korefile.js
+build/
+
+# munit
+.munit
+report/
+
+# vim swap files
+*.swp
