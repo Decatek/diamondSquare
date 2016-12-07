@@ -36,7 +36,7 @@ i=0
 turtle.hideturtle()
 while(i<len(squares)):
     turtle.penup()
-    turtle.goto(squares[i][0]*85,squares[i][1]*85)
+    turtle.goto(squares[i][0]*100,squares[i][1]*100)
     height = squares[i][2]
 
     #Water & coast
@@ -79,9 +79,13 @@ while(i<len(squares)):
         colorB = round(40 + height)
         if(colorB>=255): colorB = 255
         if(colorB<=0): colorB = 0
-        
 
-    turtle.dot(7, colorR, colorG, colorB)
+    turtle.shape("square")
+    turtle.shapesize(0.3125,0.3125,1)
+    turtle.pencolor(colorR,colorG,colorB)
+    turtle.fillcolor(colorR,colorG,colorB)
+    turtle.stamp()
+    #turtle.dot(8, colorR, colorG, colorB)
     i+=1
 
 stop = input("Stop the program? (y/n) ")
