@@ -23,10 +23,10 @@ bgcolor(255,255,255)
 
 
 #Create the first square...
-squares = [(0.0,1.0,random.random()*3),
-           (1.0,1.0,random.random()*3),
-           (0.0,0.0,random.random()*3),
-           (1.0,0.0,random.random()*3)]
+squares = [(0.0,1.0,random.random()*2),
+           (1.0,1.0,random.random()*2),
+           (0.0,0.0,random.random()*2),
+           (1.0,0.0,random.random()*2)]
 
 
 #Do the diamond-square algorithm to generate the heightmap
@@ -36,18 +36,17 @@ dsquare.diamondSquare(squares, [], [], 0, 1, 85)
 
 #Draw the heightmap
 def draw(i):
-    start = timeit.default_timer()
+    
     places = []
+    drawn = 0
     while(i<len(squares)):
         
         turtle.goto((squares[i][0]*300)-160,(squares[i][1]*300)-150)
-        
         currentPos = turtle.pos()
         
         if(currentPos not in places):
+            
             places.append(currentPos)
-
-
             height = squares[i][2]
 
             
@@ -102,15 +101,16 @@ def draw(i):
             turtle.shapesize(0.9,0.9,1)
             turtle.color(colorR,colorG,colorB)
             turtle.stamp()
+            drawn+=1
             i+=1
             
         else:
             i+=1
             
     stop = timeit.default_timer()
-    print("Map drawn in {0} seconds".format(round(stop-start)))
+    print("Map drawn in {0} seconds ({1} squares in total, ~{2} squares per second)".format(round(stop-start), drawn, (round(drawn/(round(stop-start))))))
 
 
 if __name__ == "__main__":
-
+    start = timeit.default_timer()
     draw(0)
