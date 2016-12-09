@@ -35,7 +35,7 @@ class Square {
 		var mids = new Array<Vertex>();
 		for(i in 0...4) {
 			var arr = this.toArray();
-			mids[i] = getMid(arr[i], arr[(i+1) % 4]);
+			mids[i] = Vertex.getMid(arr[i], arr[(i+1) % 4]);
 		}
 		return mids;
 	}
@@ -52,16 +52,5 @@ class Square {
 		arr[2] = v2;
 		arr[3] = v3;
 		return arr;
-	}
-
-	/**
-	 * TODO: Move to Vertex class as static function
-	 *
-	**/
-	public function getMid(a:Vertex, b:Vertex):Vertex {
-		var mid:Vertex;
-		var x = (a.x + b.x) / 2;
-		var y = (a.y + b.y) / 2;
-		return new Vertex(x, y);
 	}
 }
