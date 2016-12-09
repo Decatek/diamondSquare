@@ -47,10 +47,10 @@ class DiamondSquare {
 			for(p in edgeMids) {
 				this.vertices.push(p);
 			}
-			var sq1 = Square.fromArray([s.v0, edgeMids[0], mid, edgeMids[3]]);
-			var sq2 = Square.fromArray([edgeMids[0], s.v1, edgeMids[1], mid]);
-			var sq3 = Square.fromArray([mid, edgeMids[1], s.v2, edgeMids[2]]);
-			var sq4 = Square.fromArray([edgeMids[3], mid, edgeMids[2], s.v3]);
+			var sq1 = new Square([s.v0, edgeMids[0], mid, edgeMids[3]]);
+			var sq2 = new Square([edgeMids[0], s.v1, edgeMids[1], mid]);
+			var sq3 = new Square([mid, edgeMids[1], s.v2, edgeMids[2]]);
+			var sq4 = new Square([edgeMids[3], mid, edgeMids[2], s.v3]);
 			result = result.concat([sq1, sq2, sq3, sq4]);
 		}
 		return result;

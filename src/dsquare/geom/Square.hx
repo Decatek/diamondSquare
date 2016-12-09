@@ -40,10 +40,6 @@ class Square {
 		return mids;
 	}
 
-	public static function fromArray(arr:Array<Vertex>):Square {
-		return new Square(arr);
-	}
-
 	/**
 	 * Converts the square to an array containing all vertices
 	 *
