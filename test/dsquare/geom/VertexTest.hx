@@ -52,4 +52,14 @@ class VertexTest
 		Assert.areEqual(vert.y, 20);
 		Assert.areEqual(vert.z, 30);
 	}
+
+	@Test
+	public function shouldGetMid():Void
+	{
+		var v1 = new Vertex(0, 0);
+		var v2 = new Vertex(1, 1);
+		var mid = Vertex.getMid(v1, v2);
+		Assert.areEqual(mid.x, 0.5);
+		Assert.areEqual(mid.y, 0.5);
+	}
 }

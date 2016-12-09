@@ -67,20 +67,6 @@ class SquareTest
 	}
 
 	@Test
-	public function shouldCreateSquareFromArray():Void
-	{
-		var square = Square.fromArray(verts);
-		Assert.areEqual(square.v0.x, 0);
-		Assert.areEqual(square.v0.y, 0);
-		Assert.areEqual(square.v1.x, 1);
-		Assert.areEqual(square.v1.y, 0);
-		Assert.areEqual(square.v2.x, 1);
-		Assert.areEqual(square.v2.y, 1);
-		Assert.areEqual(square.v3.x, 0);
-		Assert.areEqual(square.v3.y, 1);
-	}
-
-	@Test
 	public function shouldGetEdgeMidpoints():Void
 	{
 		var s = new Square(verts);
@@ -93,14 +79,5 @@ class SquareTest
 		Assert.areEqual(mids[2].y, 1);
 		Assert.areEqual(mids[3].x, 0);
 		Assert.areEqual(mids[3].y, 0.5);
-	}
-
-	@Test
-	public function shouldGetMid():Void
-	{
-		var square = new Square(verts);
-		var mid = square.getMid(square.v0, square.v1);
-		Assert.areEqual(mid.x, 0.5);
-		Assert.areEqual(mid.y, 0);
 	}
 }
